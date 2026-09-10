@@ -415,7 +415,7 @@ void RimeState::updateUI(InputContext *ic) {
 
         updatePreedit(ic, context);
 
-        if (context.menu.num_candidates) {
+        if (context.menu.num_candidates || context.composition.length > 0) {
             ic->inputPanel().setCandidateList(
                 std::make_unique<RimeCandidateList>(engine_, ic, context));
         } else {
