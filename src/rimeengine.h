@@ -88,13 +88,6 @@ FCITX_CONFIGURATION(
     OptionWithAnnotation<SharedStatePolicy, SharedStatePolicyI18NAnnotation>
         sharedStatePolicy{this, "InputState", _("Shared Input State"),
                           SharedStatePolicy::All};
-    // On Linux only cursor position is available so this pins candidate window
-    // while typing. On macOS any position within embedded preedit is available
-    // so this is unnecessary. On Android there is no candidate window yet.
-    Option<bool> preeditCursorPositionAtBeginning{
-        this, "PreeditCursorPositionAtBeginning",
-        _("Fix embedded preedit cursor at the beginning of the preedit"),
-        !isAndroid() && !isApple() && !isEmscripten()};
     OptionWithAnnotation<SwitchInputMethodBehavior,
                          SwitchInputMethodBehaviorI18NAnnotation>
         switchInputMethodBehavior{
@@ -125,7 +118,14 @@ FCITX_CONFIGURATION(
         _("Use latin mode name defined in schema"), false};
     Option<bool> chineseModeNameFromSchema{
         this, "ChineseModeNameFromSchema",
-        _("Use Chinese mode name defined in schema"), false};);
+        _("Use Chinese mode name defined in schema"), false};
+    // On Linux only cursor position is available so this pins candidate window
+    // while typing. On macOS any position within embedded preedit is available
+    // so this is unnecessary. On Android there is no candidate window yet.
+    Option<bool> preeditCursorPositionAtBeginning{
+        this, "PreeditCursorPositionAtBeginning",
+        _("Fix embedded preedit cursor at the beginning of the preedit"),
+        !isAndroid() && !isApple() && !isEmscripten()};);
 
 class RimeEngine final : public InputMethodEngineV2 {
 public:

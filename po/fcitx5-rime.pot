@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-rime\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2026-09-14 14:00+0800\n"
+"POT-Creation-Date: 2026-09-14 15:07+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,36 +71,36 @@ msgstr ""
 msgid "Shared Input State"
 msgstr ""
 
-#: src/rimeengine.h:96
-msgid "Fix embedded preedit cursor at the beginning of the preedit"
-msgstr ""
-
-#: src/rimeengine.h:102
+#: src/rimeengine.h:95
 msgid "Action when switching input method"
 msgstr ""
 
-#: src/rimeengine.h:105
+#: src/rimeengine.h:98
 msgid "User data dir"
 msgstr ""
 
-#: src/rimeengine.h:115
+#: src/rimeengine.h:108
 msgid "Schema Selector"
 msgstr ""
 
-#: src/rimeengine.h:118 src/rimeengine.cpp:259
+#: src/rimeengine.h:111 src/rimeengine.cpp:259
 msgid "Deploy"
 msgstr ""
 
-#: src/rimeengine.h:122 src/rimeengine.cpp:271
+#: src/rimeengine.h:115 src/rimeengine.cpp:271
 msgid "Synchronize"
 msgstr ""
 
-#: src/rimeengine.h:125
+#: src/rimeengine.h:118
 msgid "Use latin mode name defined in schema"
 msgstr ""
 
-#: src/rimeengine.h:128
+#: src/rimeengine.h:121
 msgid "Use Chinese mode name defined in schema"
+msgstr ""
+
+#: src/rimeengine.h:127
+msgid "Fix embedded preedit cursor at the beginning of the preedit"
 msgstr ""
 
 #: src/rimecandidate.cpp:148

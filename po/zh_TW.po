@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-rime\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2026-09-14 14:00+0800\n"
+"POT-Creation-Date: 2026-09-14 15:07+0800\n"
 "PO-Revision-Date: 2017-11-23 05:02+0000\n"
 "Last-Translator: Yiyu Liu, 2024\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/fcitx/teams/12005/"
@@ -81,37 +81,37 @@ msgstr "預編輯模式"
 msgid "Shared Input State"
 msgstr "共享輸入狀態"
 
-#: src/rimeengine.h:96
-msgid "Fix embedded preedit cursor at the beginning of the preedit"
-msgstr "將內嵌預編輯游標位置固定在預編輯的開頭"
-
-#: src/rimeengine.h:102
+#: src/rimeengine.h:95
 msgid "Action when switching input method"
 msgstr "切換輸入法時的行為"
 
-#: src/rimeengine.h:105
+#: src/rimeengine.h:98
 msgid "User data dir"
 msgstr "使用者資料夾"
 
-#: src/rimeengine.h:115
+#: src/rimeengine.h:108
 msgid "Schema Selector"
 msgstr "管理方案選單"
 
-#: src/rimeengine.h:118 src/rimeengine.cpp:259
+#: src/rimeengine.h:111 src/rimeengine.cpp:259
 msgid "Deploy"
 msgstr "重新部署"
 
-#: src/rimeengine.h:122 src/rimeengine.cpp:271
+#: src/rimeengine.h:115 src/rimeengine.cpp:271
 msgid "Synchronize"
 msgstr "同步"
 
-#: src/rimeengine.h:125
+#: src/rimeengine.h:118
 msgid "Use latin mode name defined in schema"
 msgstr ""
 
-#: src/rimeengine.h:128
+#: src/rimeengine.h:121
 msgid "Use Chinese mode name defined in schema"
 msgstr ""
+
+#: src/rimeengine.h:127
+msgid "Fix embedded preedit cursor at the beginning of the preedit"
+msgstr "將內嵌預編輯游標位置固定在預編輯的開頭"
 
 #: src/rimecandidate.cpp:148
 msgid "Forget word"
