@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-rime\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2026-08-09 20:24+0000\n"
+"POT-Creation-Date: 2026-09-14 14:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,105 +15,117 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/rimeengine.h:59
+#: src/rimeengine.h:60
 msgid "Follow Global Configuration"
 msgstr ""
 
-#: src/rimeengine.h:59
+#: src/rimeengine.h:60
 msgid "All"
 msgstr ""
 
-#: src/rimeengine.h:60
+#: src/rimeengine.h:61
 msgid "Program"
 msgstr ""
 
-#: src/rimeengine.h:60
+#: src/rimeengine.h:61
 msgid "No"
 msgstr ""
 
-#: src/rimeengine.h:64
+#: src/rimeengine.h:65
 msgid "Do not show"
 msgstr ""
 
-#: src/rimeengine.h:65
+#: src/rimeengine.h:66
 msgid "Composing text"
 msgstr ""
 
-#: src/rimeengine.h:65
+#: src/rimeengine.h:66
 msgid "Commit preview"
 msgstr ""
 
-#: src/rimeengine.h:74
+#: src/rimeengine.h:75
 msgid "Clear"
 msgstr ""
 
-#: src/rimeengine.h:75
+#: src/rimeengine.h:76
 msgid "Commit raw input"
 msgstr ""
 
-#: src/rimeengine.h:76
+#: src/rimeengine.h:77
 msgid "Commit composing text"
 msgstr ""
 
-#: src/rimeengine.h:77
+#: src/rimeengine.h:78
 msgid "Commit commit preview"
 msgstr ""
 
-#: src/rimeengine.h:82
+#: src/rimeengine.h:81
+msgid "Items"
+msgstr ""
+
+#: src/rimeengine.h:86
 msgid "Preedit Mode"
 msgstr ""
 
-#: src/rimeengine.h:85
+#: src/rimeengine.h:89
 msgid "Shared Input State"
 msgstr ""
 
-#: src/rimeengine.h:92
+#: src/rimeengine.h:96
 msgid "Fix embedded preedit cursor at the beginning of the preedit"
 msgstr ""
 
-#: src/rimeengine.h:98
+#: src/rimeengine.h:102
 msgid "Action when switching input method"
 msgstr ""
 
-#: src/rimeengine.h:101
+#: src/rimeengine.h:105
 msgid "User data dir"
 msgstr ""
 
-#: src/rimeengine.h:111 src/rimeengine.cpp:207
+#: src/rimeengine.h:115
+msgid "Schema Selector"
+msgstr ""
+
+#: src/rimeengine.h:118 src/rimeengine.cpp:259
 msgid "Deploy"
 msgstr ""
 
-#: src/rimeengine.h:115 src/rimeengine.cpp:219
+#: src/rimeengine.h:122 src/rimeengine.cpp:271
 msgid "Synchronize"
 msgstr ""
 
-#: src/rimeengine.h:118
+#: src/rimeengine.h:125
 msgid "Use latin mode name defined in schema"
 msgstr ""
 
-#: src/rimecandidate.cpp:157
+#: src/rimeengine.h:128
+msgid "Use Chinese mode name defined in schema"
+msgstr ""
+
+#: src/rimecandidate.cpp:148
 msgid "Forget word"
 msgstr ""
 
-#: src/rimestate.cpp:78 src/rimeengine.cpp:736
+#: src/rimestate.cpp:78 src/rimeengine.cpp:935
 msgid "Latin Mode"
 msgstr ""
 
-#: src/rimeengine.cpp:566
+#: src/rimeengine.cpp:769
 msgid ""
 "Rime is under maintenance. It may take a few seconds. Please wait until it "
 "is finished..."
 msgstr ""
 
-#: src/rimeengine.cpp:569
+#: src/rimeengine.cpp:772
 msgid "Rime is ready."
 msgstr ""
 
-#: src/rimeengine.cpp:582
+#: src/rimeengine.cpp:785
 msgid "Rime has encountered an error. See log for details."
 msgstr ""
 
-#: src/rimeengine.cpp:600 src/rime.conf.in:2 src/rime-addon.conf.in.in:2
+#: src/rimeengine.cpp:803 src/rime.conf.in:2 src/rime-addon.conf.in.in:2
 msgid "Rime"
 msgstr ""
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-rime\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2026-09-04 20:24+0000\n"
+"POT-Creation-Date: 2026-09-14 14:00+0800\n"
 "PO-Revision-Date: 2017-11-23 05:02+0000\n"
 "Last-Translator: Xuetian Weng <wengxt@gmail.com>, 2026\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/fcitx/teams/12005/"
@@ -44,11 +44,11 @@ msgstr "不显示"
 
 #: src/rimeengine.h:66
 msgid "Composing text"
-msgstr "编辑中文本"
+msgstr "预览编码"
 
 #: src/rimeengine.h:66
 msgid "Commit preview"
-msgstr "提交预览"
+msgstr "预览首个候选词"
 
 #: src/rimeengine.h:75
 msgid "Clear"
@@ -56,71 +56,83 @@ msgstr "清空"
 
 #: src/rimeengine.h:76
 msgid "Commit raw input"
-msgstr "提交原始字符串"
+msgstr "提交原始输入"
 
 #: src/rimeengine.h:77
 msgid "Commit composing text"
-msgstr "提交编辑中文本"
+msgstr "提交预编码"
 
 #: src/rimeengine.h:78
 msgid "Commit commit preview"
-msgstr "提交预览"
+msgstr "预览首个候选词"
 
-#: src/rimeengine.h:83
-msgid "Preedit Mode"
-msgstr "预编辑模式"
+#: src/rimeengine.h:81
+msgid "Items"
+msgstr "项目"
 
 #: src/rimeengine.h:86
+msgid "Preedit Mode"
+msgstr "预编码模式"
+
+#: src/rimeengine.h:89
 msgid "Shared Input State"
 msgstr "共享输入状态"
 
-#: src/rimeengine.h:93
+#: src/rimeengine.h:96
 msgid "Fix embedded preedit cursor at the beginning of the preedit"
-msgstr "将嵌入式预编辑文本的光标固定在开头"
+msgstr "将光标固定在嵌入式预编码的开头"
 
-#: src/rimeengine.h:99
+#: src/rimeengine.h:102
 msgid "Action when switching input method"
 msgstr "切换输入法时的行为"
 
-#: src/rimeengine.h:102
+#: src/rimeengine.h:105
 msgid "User data dir"
 msgstr "用户数据目录"
 
-#: src/rimeengine.h:112 src/rimeengine.cpp:207
+#: src/rimeengine.h:115
+msgid "Schema Selector"
+msgstr "管理方案选单"
+
+#: src/rimeengine.h:118 src/rimeengine.cpp:259
 msgid "Deploy"
 msgstr "重新部署"
 
-#: src/rimeengine.h:116 src/rimeengine.cpp:219
+#: src/rimeengine.h:122 src/rimeengine.cpp:271
 msgid "Synchronize"
-msgstr "同步"
+msgstr "同步用户词"
 
-#: src/rimeengine.h:119
+#: src/rimeengine.h:125
 msgid "Use latin mode name defined in schema"
-msgstr "使用方案中定义的英文模式名称"
+msgstr "使用方案中定义的英文名称"
 
-#: src/rimecandidate.cpp:157
+#: src/rimeengine.h:128
+msgid "Use Chinese mode name defined in schema"
+msgstr "使用方案中定义的中文名称"
+
+#: src/rimecandidate.cpp:148
 msgid "Forget word"
-msgstr "忘记词汇"
+msgstr "重置词频"
 
-#: src/rimestate.cpp:78 src/rimeengine.cpp:733
+#: src/rimestate.cpp:78 src/rimeengine.cpp:935
 msgid "Latin Mode"
 msgstr "英文模式"
 
-#: src/rimeengine.cpp:567
+#: src/rimeengine.cpp:769
 msgid ""
 "Rime is under maintenance. It may take a few seconds. Please wait until it "
 "is finished..."
-msgstr "Rime 正在进行维护程序。可能需要几秒钟。请等待完成……"
+msgstr "Rime 维护中, 请等待完成……"
 
-#: src/rimeengine.cpp:570
+#: src/rimeengine.cpp:772
 msgid "Rime is ready."
-msgstr "Rime 就绪。"
+msgstr "Rime 已就绪。"
 
-#: src/rimeengine.cpp:583
+#: src/rimeengine.cpp:785
 msgid "Rime has encountered an error. See log for details."
 msgstr "Rime 出现了一个错误。详细信息请参阅日志。"
 
-#: src/rimeengine.cpp:601 src/rime.conf.in:2 src/rime-addon.conf.in.in:2
+#: src/rimeengine.cpp:803 src/rime.conf.in:2 src/rime-addon.conf.in.in:2
 msgid "Rime"
 msgstr "中州韵"
 

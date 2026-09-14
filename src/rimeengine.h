@@ -77,6 +77,9 @@ FCITX_CONFIG_ENUM_NAME_WITH_I18N(SwitchInputMethodBehavior, N_("Clear"),
                                  N_("Commit composing text"),
                                  N_("Commit commit preview"))
 
+FCITX_CONFIGURATION(RimeSchemaSelectorConfig,
+                    Option<std::string> items{this, "Items", _("Items"), ""};);
+
 FCITX_CONFIGURATION(
     RimeEngineConfig,
     OptionWithAnnotation<PreeditMode, PreeditModeI18NAnnotation> preeditMode{
@@ -108,6 +111,9 @@ FCITX_CONFIGURATION(
                                         .string(),
                                     "\"", "\"\"\""),
             "\"")};
+    ExternalOption schemaSelector{
+        this, "SchemaSelector", _("Schema Selector"),
+        "fcitx://multiselect/addon/rime/schema-selector?option=Items&min=1"};
     fcitx::Option<fcitx::KeyList> deploy{
         this, "Deploy", _("Deploy"),
         isApple() ? fcitx::KeyList{fcitx::Key("Control+Alt+grave")}
@@ -116,7 +122,10 @@ FCITX_CONFIGURATION(
         this, "Synchronize", _("Synchronize"), {}};
     Option<bool> latinModeNameFromSchema{
         this, "LatinModeNameFromSchema",
-        _("Use latin mode name defined in schema"), false};);
+        _("Use latin mode name defined in schema"), false};
+    Option<bool> chineseModeNameFromSchema{
+        this, "ChineseModeNameFromSchema",
+        _("Use Chinese mode name defined in schema"), false};);
 
 class RimeEngine final : public InputMethodEngineV2 {
 public:
@@ -135,13 +144,14 @@ public:
     auto &factory() { return factory_; }
 
     const Configuration *getConfig() const override { return &config_; }
+    const Configuration *getSubConfig(const std::string &path) const override;
     void setConfig(const RawConfig &config) override {
         config_.load(config, true);
         safeSaveAsIni(config_, "conf/rime.conf");
         updateConfig();
     }
     void setSubConfig(const std::string &path,
-                      const RawConfig & /*unused*/) override;
+                      const RawConfig &config) override;
     void updateConfig();
 
     std::string subMode(const InputMethodEntry & /*entry*/,
@@ -210,6 +220,7 @@ private:
     SimpleAction syncAction_;
 
     RimeEngineConfig config_;
+    mutable RimeSchemaSelectorConfig schemaSelectorConfig_;
     std::unordered_map<std::string, std::unordered_map<std::string, bool>>
         appOptions_;
 

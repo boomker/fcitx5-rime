@@ -113,7 +113,8 @@ std::string RimeState::subModeLabel() {
             result = asciiModeName(/*abbrev=*/true);
         } else if (status.schema_name && status.schema_name[0] != '.') {
             result = status.schema_name;
-            if (!result.empty() &&
+            if (!engine_->config().chineseModeNameFromSchema.value() &&
+                !result.empty() &&
                 utf8::lengthValidated(result) != utf8::INVALID_LENGTH) {
                 result = result.substr(
                     0, std::distance(result.begin(),
