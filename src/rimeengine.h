@@ -218,6 +218,7 @@ private:
     SimpleAction separatorAction_;
     SimpleAction deployAction_;
     SimpleAction syncAction_;
+    SimpleAction schemaSelectorAction_;
 
     RimeEngineConfig config_;
     mutable RimeSchemaSelectorConfig schemaSelectorConfig_;

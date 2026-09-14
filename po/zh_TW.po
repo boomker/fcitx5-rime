@@ -89,7 +89,7 @@ msgstr "切換輸入法時的行為"
 msgid "User data dir"
 msgstr "使用者資料夾"
 
-#: src/rimeengine.h:108
+#: src/rimeengine.h:108 src/rimeengine.cpp:282
 msgid "Schema Selector"
 msgstr "管理方案選單"
 

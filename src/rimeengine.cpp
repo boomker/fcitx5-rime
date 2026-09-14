@@ -279,9 +279,14 @@ RimeEngine::RimeEngine(Instance *instance)
     });
     instance_->userInterfaceManager().registerAction("fcitx-rime-sync",
                                                      &syncAction_);
+    schemaSelectorAction_.setShortText(_("Schema Selector"));
+    instance_->userInterfaceManager().registerAction(
+        "fcitx://multiselect/addon/rime/schema-selector?option=Items&min=1",
+        &schemaSelectorAction_);
     schemaMenu_.addAction(&separatorAction_);
     schemaMenu_.addAction(&deployAction_);
     schemaMenu_.addAction(&syncAction_);
+    schemaMenu_.addAction(&schemaSelectorAction_);
     globalConfigReloadHandle_ = instance_->watchEvent(
         EventType::GlobalConfigReloaded, EventWatcherPhase::Default,
         [this](Event &) { refreshSessionPoolPolicy(); });

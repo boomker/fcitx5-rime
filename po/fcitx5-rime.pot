@@ -79,7 +79,7 @@ msgstr ""
 msgid "User data dir"
 msgstr ""
 
-#: src/rimeengine.h:108
+#: src/rimeengine.h:108 src/rimeengine.cpp:282
 msgid "Schema Selector"
 msgstr ""
 

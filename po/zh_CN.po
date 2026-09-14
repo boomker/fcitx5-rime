@@ -86,7 +86,7 @@ msgstr "切换输入法时的行为"
 msgid "User data dir"
 msgstr "用户数据目录"
 
-#: src/rimeengine.h:108
+#: src/rimeengine.h:108 src/rimeengine.cpp:282
 msgid "Schema Selector"
 msgstr "管理方案选单"
 
