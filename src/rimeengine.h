@@ -9,6 +9,7 @@
 #include "rimesession.h"
 #include "rimestate.h"
 #include <cstdint>
+#include <filesystem>
 #include <fcitx-config/configuration.h>
 #include <fcitx-config/enum.h>
 #include <fcitx-config/iniparser.h>
@@ -143,13 +144,13 @@ public:
     void save() override;
     auto &factory() { return factory_; }
 
-    const Configuration *getConfig() const override { return &config_; }
+    const Configuration *getConfig() const override { return &globalConfig_; }
+    const Configuration *
+    getConfigForInputMethod(const InputMethodEntry &entry) const override;
     const Configuration *getSubConfig(const std::string &path) const override;
-    void setConfig(const RawConfig &config) override {
-        config_.load(config, true);
-        safeSaveAsIni(config_, "conf/rime.conf");
-        updateConfig();
-    }
+    void setConfig(const RawConfig &config) override;
+    void setConfigForInputMethod(const InputMethodEntry &entry,
+                                 const RawConfig &config) override;
     void setSubConfig(const std::string &path,
                       const RawConfig &config) override;
     void updateConfig();
@@ -201,6 +202,16 @@ private:
     void refreshSessionPoolPolicy();
     PropertyPropagatePolicy getSharedStatePolicy();
 
+    // Per-input-method configuration support: each Rime input method stores
+    // its settings in "conf/rime/<uniqueName>.conf" under PkgConfig,
+    // independently from the addon default "conf/rime.conf".
+    std::filesystem::path
+    perImConfigPath(const std::string &uniqueName) const;
+    RimeEngineConfig &
+    ensurePerImConfig(const std::string &uniqueName) const;
+    void applyActiveEntryConfig(const InputMethodEntry &entry);
+    const InputMethodEntry *activeInputMethodEntry() const;
+
     bool constructed_ = false;
     std::string sharedDataDir_;
     IconTheme theme_;
@@ -220,7 +231,13 @@ private:
     SimpleAction syncAction_;
     SimpleAction schemaSelectorAction_;
 
+    // Active runtime config (global default or per-IM override).
     RimeEngineConfig config_;
+    // Pristine addon default, written back to "conf/rime.conf".
+    RimeEngineConfig globalConfig_;
+    mutable std::unordered_map<std::string, std::unique_ptr<RimeEngineConfig>>
+        perImConfigs_;
+    std::string activeConfigName_;
     mutable RimeSchemaSelectorConfig schemaSelectorConfig_;
     std::unordered_map<std::string, std::unordered_map<std::string, bool>>
         appOptions_;

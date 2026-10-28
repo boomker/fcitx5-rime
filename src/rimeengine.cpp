@@ -412,8 +412,97 @@ void RimeEngine::updateAppOptions() {
 }
 
 void RimeEngine::reloadConfig() {
-    readAsIni(config_, "conf/rime.conf");
+    readAsIni(globalConfig_, "conf/rime.conf");
+    perImConfigs_.clear();
+    if (auto *entry = activeInputMethodEntry()) {
+        config_ = ensurePerImConfig(entry->uniqueName());
+        activeConfigName_ = entry->uniqueName();
+    } else {
+        config_ = globalConfig_;
+        activeConfigName_.clear();
+    }
     updateConfig();
+}
+
+std::filesystem::path
+RimeEngine::perImConfigPath(const std::string &uniqueName) const {
+    return stringutils::concat("conf/rime/", uniqueName, ".conf");
+}
+
+RimeEngineConfig &
+RimeEngine::ensurePerImConfig(const std::string &uniqueName) const {
+    auto it = perImConfigs_.find(uniqueName);
+    if (it != perImConfigs_.end()) {
+        return *it->second;
+    }
+
+    auto configPtr = std::make_unique<RimeEngineConfig>();
+    auto &config = *configPtr;
+    // Seed from the current addon defaults, then overlay the per-IM file.
+    RawConfig defaultRaw;
+    globalConfig_.save(defaultRaw);
+    config.load(defaultRaw, false);
+
+    if (auto file = StandardPaths::global().open(
+            StandardPathsType::PkgConfig, perImConfigPath(uniqueName));
+        file.isValid()) {
+        RawConfig fileRaw;
+        readFromIni(fileRaw, file.fd());
+        config.load(fileRaw, false);
+    }
+
+    perImConfigs_[uniqueName] = std::move(configPtr);
+    return config;
+}
+
+const InputMethodEntry *RimeEngine::activeInputMethodEntry() const {
+    if (auto *inputContext = instance_->mostRecentInputContext()) {
+        return instance_->inputMethodEntry(inputContext);
+    }
+    return nullptr;
+}
+
+void RimeEngine::applyActiveEntryConfig(const InputMethodEntry &entry) {
+    if (activeConfigName_ == entry.uniqueName()) {
+        return;
+    }
+    config_ = ensurePerImConfig(entry.uniqueName());
+    activeConfigName_ = entry.uniqueName();
+}
+
+const Configuration *
+RimeEngine::getConfigForInputMethod(const InputMethodEntry &entry) const {
+    return &ensurePerImConfig(entry.uniqueName());
+}
+
+void RimeEngine::setConfig(const RawConfig &config) {
+    globalConfig_.load(config, true);
+    safeSaveAsIni(globalConfig_, "conf/rime.conf");
+    // Existing per-IM overrides stay on disk; drop the caches so they are
+    // re-seeded from the new global defaults and overlaid on next access.
+    perImConfigs_.clear();
+    if (auto *entry = activeInputMethodEntry()) {
+        config_ = ensurePerImConfig(entry->uniqueName());
+        activeConfigName_ = entry->uniqueName();
+    } else {
+        config_ = globalConfig_;
+        activeConfigName_.clear();
+    }
+    updateConfig();
+}
+
+void RimeEngine::setConfigForInputMethod(const InputMethodEntry &entry,
+                                         const RawConfig &config) {
+    auto &imConfig = ensurePerImConfig(entry.uniqueName());
+    imConfig.load(config, true);
+    safeSaveAsIni(imConfig, StandardPathsType::PkgConfig,
+                  perImConfigPath(entry.uniqueName()));
+
+    if (auto *active = activeInputMethodEntry();
+        active && active->uniqueName() == entry.uniqueName()) {
+        config_ = imConfig;
+        activeConfigName_ = entry.uniqueName();
+    }
 }
 
 void RimeEngine::setSubConfig(const std::string &path,
@@ -659,9 +748,11 @@ void RimeEngine::updateStatusArea(RimeSessionId session) {
         });
 }
 
-void RimeEngine::activate(const InputMethodEntry & /*entry*/,
+void RimeEngine::activate(const InputMethodEntry &entry,
                           InputContextEvent &event) {
     auto *ic = event.inputContext();
+    // Switch the runtime config to this input method's per-IM override.
+    applyActiveEntryConfig(entry);
     refreshStatusArea(*ic);
     if (auto *state = this->state(ic)) {
         state->activate();
